@@ -1,11 +1,13 @@
 <template>
   <button
-    :disabled="disabled"
+    @click="change"
+    :disabled="disabled || loading"
     class="yang-button"
     :style="[minWidthCss]"
-    :class="[theme, isRound, isBorder, isSize]"
+    :class="[theme, isRound, isBorder, isSize, blockCss]"
   >
     <span>
+      <i v-if="loading" class="iconfont icon-prefix icon-loading"></i>
       <i v-if="prefix" class="iconfont icon-prefix" :class="iconPrefix"></i>
       <slot></slot>
       <i v-if="suffix" class="iconfont icon-suffix" :class="iconSuffix"></i>
@@ -41,6 +43,7 @@ export default {
     border: Boolean,
     disabled: Boolean,
     block: Boolean,
+    loading: Boolean,
   },
   computed: {
     theme() {
@@ -67,6 +70,11 @@ export default {
     },
     blockCss() {
       return this.block ? 'yang-button-block' : ''
+    },
+  },
+  methods: {
+    change() {
+      this.$emit('click')
     },
   },
 }
@@ -167,5 +175,18 @@ export default {
   width: 100%;
   padding: 0;
   margin-bottom: 0;
+}
+/**loading动画加载*/
+.icon-loading {
+  animation: loading 2s infinite linear;
+}
+
+@keyframes loading {
+  0% {
+    transform: rotate(0deg);
+  }
+  100% {
+    transform: rotate(360deg);
+  }
 }
 </style>
