@@ -1,16 +1,16 @@
 <template>
-  <button class="yang-button yang-button-warning">
+  <button disabled class="yang-button yang-button-primary is-round">
     <slot></slot>
   </button>
 </template>
 
-<script setup>
+<script>
 export default {
   name: 'index',
 }
 </script>
 
-<style scoped lang="scss">
+<style lang="scss" scoped>
 .yang-button {
   border-width: 1px;
   border-style: solid;
@@ -42,5 +42,9 @@ export default {
   background-color: #f56c6c;
   border-color: #f56c6c;
   color: #fff;
+}
+.yang-button[disabled] {
+  cursor: not-allowed;
+  opacity: 0.5;
 }
 </style>
