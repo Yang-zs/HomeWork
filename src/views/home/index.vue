@@ -1,9 +1,9 @@
 <template>
   <div class="home">
-    <yangButton>默认按钮</yangButton>
-    <yangButton size="medium" type="primary">成功按钮</yangButton>
-    <yangButton type="danger">危险按钮</yangButton>
-    <yangButton type="warning" border>警告按钮</yangButton>
+    <yangButton block>默认按钮</yangButton>
+    <yangButton size="medium" type="primary" block>成功按钮</yangButton>
+    <yangButton type="danger" block>危险按钮</yangButton>
+    <yangButton type="warning" border block>警告按钮</yangButton>
   </div>
 </template>
 <script>

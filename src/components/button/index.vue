@@ -40,6 +40,7 @@ export default {
     round: Boolean,
     border: Boolean,
     disabled: Boolean,
+    block: Boolean,
   },
   computed: {
     theme() {
@@ -64,6 +65,9 @@ export default {
     iconSuffix() {
       return this.suffix ? `icon-${this.suffix}` : ''
     },
+    blockCss() {
+      return this.block ? 'yang-button-block' : ''
+    },
   },
 }
 </script>
@@ -83,6 +87,7 @@ export default {
 
   + .yang-button {
     margin-left: 14px;
+    margin-bottom: 10px;
   }
 
   > span {
@@ -152,10 +157,15 @@ export default {
   }
 }
 
-/**
- * 圆角
- */
+/*** 圆角 */
 .is-round {
   border-radius: 100px;
+}
+/**块级按钮*/
+.yang-button-block {
+  display: block;
+  width: 100%;
+  padding: 0;
+  margin-bottom: 0;
 }
 </style>
