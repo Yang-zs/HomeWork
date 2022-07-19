@@ -1,9 +1,13 @@
 <template>
   <div class="home">
-    <yang-table :column="column" checkbox index>
-      <template v-slot:operation>
-        <el-button type="primary">编辑</el-button>
-        <yang-button type="danger">删除</yang-button>
+    <yang-table :column="column" index checkbox>
+      <template v-slot:operation="slot">
+        <el-button type="primary" @click="handleEdit(slot.data)">
+          编辑
+        </el-button>
+        <yang-button type="danger" @click="handleDelete(slot.data)">
+          删除
+        </yang-button>
       </template>
     </yang-table>
   </div>
@@ -16,30 +20,40 @@ export default {
     return {
       column: [
         {
-          label: 'URL地址',
+          label: '标题',
+          prop: 'title',
           type: 'function',
-          prop: 'date',
-          callback: (data) => {
-            return `<a href="https://www.baidu.com">${data.name}</a>`
+          callback: (row) => {
+            if (row.id === 1) {
+              return `<a href="https://www.baidu.com">${row.title}</a>`
+            }
+            return `<span>${row.title}</span>`
           },
         },
-        // { label: '日期', prop: 'date', width: 500 },
+        { label: '日期', prop: 'date' },
         { label: '姓名', prop: 'name' },
         { label: '地址', prop: 'address' },
         { label: '性别', prop: 'sex' },
         {
           label: '操作',
-          prop: 'operation',
           type: 'slot',
           slot_name: 'operation',
+          prop: 'operation',
         },
       ],
     }
   },
   components: {
-    yangTable: () => import('../../components/table/index.vue'),
     yangButton: () => import('../../components/button/index.vue'),
+    yangTable: () => import('../../components/table/index.vue'),
   },
-  methods: {},
+  methods: {
+    handleEdit(row) {
+      console.log(row)
+    },
+    handleDelete(row) {
+      console.log(row)
+    },
+  },
 }
 </script>
