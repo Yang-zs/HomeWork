@@ -1,10 +1,11 @@
 <template>
   <div>
-    <yang-form :item="formItem" :field="formField"></yang-form>
+    <yang-form :item="formItem" :field="formField" ></yang-form>
   </div>
 </template>
 
 <script>
+
 export default {
   name: 'Form',
   data () {
@@ -12,21 +13,52 @@ export default {
       formItem: [
         {
           type: 'input',
-          label: '活动名称'
+          prop: 'name',
+          label: '姓名',
+          required: true
+          // rules: [
+          //   {
+          //     required: true,
+          //     message: '必填'
+          //   }
+          // ]
         },
         {
           type: 'select',
-          label: '活动区域'
+          prop: 'gender',
+          label: '性别',
+          required: true
+          // message: '请输入姓名'
+          // rules: [
+          //   {
+          //     required: true,
+          //     message: '必填'
+          //   }
+          // ]
+        },
+        {
+          type: 'input',
+          prop: 'sex',
+          label: '年龄',
+          required: true
+          // message: '请输入年龄'
+          // rules: [
+          //   {
+          //     required: true,
+          //     message: '必填'
+          //   }
+          // ]
         }
       ],
-      formField:{
-        name:'',
-        gender:''
+      formField: {
+        name: '',
+        gender: '',
+        age: ''
       }
     }
   },
   components: {
-    yangForm: () => import('../components/form/index.vue')
+    yangForm: () => import('../components/form/index')
   }
 }
 </script>

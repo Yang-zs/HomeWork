@@ -1,11 +1,23 @@
 <template>
   <div class="form-container">
-    <el-form ref="form" :model="form" label-width="80px">
+    <el-form :model="field" ref="form"  label-width="80px">
       <template v-for="item in formItem">
-        <el-form-item v-if="item.type === 'input'" :key="item.label" :label="item.label">
+        <el-form-item
+            v-if="item.type === 'input'"
+            :key="item.label"
+            :label="item.label"
+            :prop="item.prop"
+            :rules="item.rules"
+        >
           <el-input v-model="field[item.prop]"></el-input>
         </el-form-item>
-        <el-form-item v-if="item.type === 'select'" :key="item.label" :label="item.label">
+        <el-form-item
+            v-if="item.type === 'select'"
+            :key="item.label"
+            :label="item.label"
+            :prop="item.prop"
+            :rules="item.rules"
+        >
           <el-select v-model="field[item.prop]"></el-select>
         </el-form-item>
       </template>
@@ -14,19 +26,24 @@
 </template>
 
 <script>
+import createRules from './createRules'
 export default {
-  name:'index',
-  props:{
-    item:{
-      type:Array,
-      default:()=>[]
+  name: 'index',
+  props: {
+    item: {
+      type: Array,
+      default: () => []
     },
-    field:{
-      type:Object,
-      default:()=>({})
+    field: {
+      type: Object,
+      default: () => ({})
+    },
+    rules: {
+      type: Object,
+      default: () => ({})
     }
   },
-  data() {
+  data () {
     return {
       formItem: [],
       form: {
@@ -34,12 +51,12 @@ export default {
       }
     }
   },
-  methods:{
+  methods: {
 
   },
-  beforeMount() {
-    this.formItem = this.item
-  },
+  beforeMount () {
+    this.formItem = createRules(this.item)
+  }
 }
 </script>
 
