@@ -1,64 +1,61 @@
 <template>
   <div>
-    <yang-form :item="formItem" :field="formField" ></yang-form>
+    <yang-form :item="formItem" :field="formField" :button="formButton"></yang-form>
   </div>
 </template>
 
 <script>
-
 export default {
   name: 'Form',
   data () {
     return {
+      formButton: [
+        { label: '提交', key: 'submit', type: 'primary' },
+        { label: '重置', key: 'cancel', type: 'danger' },
+        { label: '下一步', key: 'next', type: 'success' }
+      ],
       formItem: [
         {
+          label: '手机号',
           type: 'input',
-          prop: 'name',
-          label: '姓名',
+          valueType: 'phone',
+          prop: 'phone',
           required: true
-          // rules: [
-          //   {
-          //     required: true,
-          //     message: '必填'
-          //   }
-          // ]
         },
         {
-          type: 'select',
-          prop: 'gender',
-          label: '性别',
+          label: '密码',
+          type: 'input',
+          valueType: 'password',
+          prop: 'password',
           required: true
-          // message: '请输入姓名'
-          // rules: [
-          //   {
-          //     required: true,
-          //     message: '必填'
-          //   }
-          // ]
         },
         {
+          label: '邮箱',
           type: 'input',
-          prop: 'sex',
+          valueType: 'email',
+          prop: 'email',
+          required: true
+        },
+        {
           label: '年龄',
+          type: 'select',
+          prop: 'age',
           required: true
-          // message: '请输入年龄'
-          // rules: [
-          //   {
-          //     required: true,
-          //     message: '必填'
-          //   }
-          // ]
         }
       ],
       formField: {
-        name: '',
-        gender: '',
-        age: ''
+        phone: '',
+        password: '',
+        age: '',
+        email: ''
       }
     }
   },
   components: {
     yangForm: () => import('../components/form/index')
+  },
+  methods: {
+
   }
 }
 </script>
