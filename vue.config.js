@@ -18,12 +18,12 @@ module.exports = {
         },
       },
     },
-  },
-  css: {
-    loaderOptions: {
-      scss: {
-        additionalData: "@import './src/styles/scssconfig.scss';",
-      },
-    },
+    // css: {
+    //   loaderOptions: {
+    //     scss: {
+    //       additionalData: "@import './src/styles/scssconfig.scss';",
+    //     },
+    //   },
+    // },
   },
 }

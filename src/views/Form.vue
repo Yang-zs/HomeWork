@@ -4,7 +4,7 @@
       :item="formItem"
       :field="formField"
       :button="formButton"
-      :before-submit="submitForm"
+      :before-submit="handleBeforeSubmit"
     ></yang-form>
   </div>
 </template>
@@ -28,28 +28,46 @@ export default {
           required: true,
         },
         {
-          label: '密码',
-          type: 'input',
-          valueType: 'password',
-          prop: 'password',
-          required: true,
-        },
-        {
-          label: '邮箱',
-          type: 'input',
-          valueType: 'email',
-          prop: 'email',
-          required: true,
-        },
-        {
-          label: '年龄',
+          label: '教室',
           type: 'select',
-          prop: 'age',
+          prop: 'class_room',
           required: true,
+          options: [
+            {
+              label: '一教',
+              value: 1,
+            },
+            {
+              label: '二教',
+              value: 2,
+            },
+            {
+              label: '三教',
+              value: 3,
+            },
+            {
+              label: '四教',
+              value: 4,
+            },
+          ],
+        },
+        {
+          label: '异步教室',
+          type: 'select',
+          prop: 'class_room1',
+          required: true,
+          url: '/classroom/',
+          method: 'get',
+          initRequest: true,
+          props: {
+            label: 'class_name',
+            value: 'id',
+          },
+          fetchSearch: true,
         },
       ],
       formField: {
-        phone: '',
+        phone: '17802901987',
         password: '',
         age: '',
         email: '',
@@ -60,10 +78,11 @@ export default {
     yangForm: () => import('../components/form/index'),
   },
   methods: {
-    submitForm() {
+    handleBeforeSubmit() {
       return new Promise((resolve, reject) => {
         setTimeout(() => {
-          resolve()
+          // eslint-disable-next-line prefer-promise-reject-errors
+          reject()
         }, 2000)
       })
     },
