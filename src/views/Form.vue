@@ -1,18 +1,23 @@
 <template>
   <div>
-    <yang-form :item="formItem" :field="formField" :button="formButton"></yang-form>
+    <yang-form
+      :item="formItem"
+      :field="formField"
+      :button="formButton"
+      :before-submit="submitForm"
+    ></yang-form>
   </div>
 </template>
 
 <script>
 export default {
   name: 'Form',
-  data () {
+  data() {
     return {
       formButton: [
         { label: '提交', key: 'submit', type: 'primary' },
         { label: '重置', key: 'cancel', type: 'danger' },
-        { label: '下一步', key: 'next', type: 'success' }
+        { label: '下一步', key: 'next', type: 'success' },
       ],
       formItem: [
         {
@@ -20,46 +25,50 @@ export default {
           type: 'input',
           valueType: 'phone',
           prop: 'phone',
-          required: true
+          required: true,
         },
         {
           label: '密码',
           type: 'input',
           valueType: 'password',
           prop: 'password',
-          required: true
+          required: true,
         },
         {
           label: '邮箱',
           type: 'input',
           valueType: 'email',
           prop: 'email',
-          required: true
+          required: true,
         },
         {
           label: '年龄',
           type: 'select',
           prop: 'age',
-          required: true
-        }
+          required: true,
+        },
       ],
       formField: {
         phone: '',
         password: '',
         age: '',
-        email: ''
-      }
+        email: '',
+      },
     }
   },
   components: {
-    yangForm: () => import('../components/form/index')
+    yangForm: () => import('../components/form/index'),
   },
   methods: {
-
-  }
+    submitForm() {
+      return new Promise((resolve, reject) => {
+        setTimeout(() => {
+          resolve()
+        }, 2000)
+      })
+    },
+  },
 }
 </script>
 
-<style scoped>
-
-</style>
+<style scoped></style>
