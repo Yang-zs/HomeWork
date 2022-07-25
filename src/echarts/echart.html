@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+  <script src="./echarts.min.js"></script>
+</head>
+
+<body>
+  <div id="main" style="width: 600px; height: 400px;"></div>
+</body>
+
+</html>
+
+<script>
+  var myCharts = echarts.init(document.getElementById('main'));
+  var yDataArr1 = [5, 20, 36, 10, 10, 20];  // 数据1
+  var yDataArr2 = [22, 60, 56, 70, 60, 30];  // 数据2
+  var option = {
+    title: {
+      text: 'ECharts 入门示例',
+      link: 'http://echarts.baidu.com/doc/example.html',
+      textStyle: {
+        color: 'red',
+      },
+      borderWidth: 5,
+      borderColor: 'blue',
+      borderRadius: 10,
+    },
+    // 提示框组件
+    tooltip: {
+      // 鼠标点击或者滑过的显示类型
+      trigger: 'axis',
+      // 鼠标点击时，显示的内容
+      triggerOn: 'click',
+      // formatter: '{a} <br/>{b} : {c}',
+      axisPointer: {
+        type: 'shadow',
+      },
+    },
+    // 工具栏
+    toolbox: {
+      feature: {
+        saveAsImage: {},  // 开启导出图片
+        dataView: {}, //数据视图
+        restore: {}, // 重置还原
+        dataZoom: {}, //数据缩放
+        magicType: { type: ['line', 'bar'] }, // 图表类型切换
+      }
+    },
+    legend: {
+      data: ['销量']
+    },
+    // x y 互换type实现 垂直柱状图 和 横向柱状图
+    xAxis: {
+      // type: 'category',
+      // data: ["衬衫", "羊毛衫", "雪纺衫", "裤子", "高跟鞋", "袜子"]
+    },
+    yAxis: {
+      // type: 'value',//设置为Value 不需要默认值
+    },
+    // 筛选
+    legend: {
+      data: ['销量', '数学']
+    },
+    // 系列
+    series: [{
+      // 系列名称
+      name: '销量',
+      type: 'bar',
+      data: yDataArr1,
+      // 设置最大值最小值
+      // markPoint: {
+      //   data: [
+      //     { type: 'max', name: '最大值' },
+      //     { type: 'min', name: '最小值' }
+      //   ]
+      // },
+      // 平均线 设置平均值
+      // markLine: {
+      //   data: [
+      //     {
+      //       type: 'average',
+      //       name: '平均值'
+      //     }
+      //   ]
+      // },
+      // // 显示 每一项数值
+      // label: {
+      //   show: true, //显示数值
+      //   // rotate: 90, // 旋转
+      //   position: 'inside', // 数值显示位置
+      // },
+      // // 柱子宽度
+      // barWidth: '50%',
+    },
+    {
+      name: '数学',
+      type: 'bar',
+      data: yDataArr2
+    }
+    ]
+
+  };
+  myCharts.setOption(option);
+
+</script>
