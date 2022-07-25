@@ -1,7 +1,3 @@
-/**
- * @author YangLing
- * @date 2022/7/18 11:17
- */
 module.exports = {
   devServer: {
     open: false, // 编译完成是否打开网页

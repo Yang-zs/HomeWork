@@ -6,7 +6,7 @@ Vue.use(VueRouter)
 
 const routes = [
   {
-    path: '/',
+    path: '/home',
     name: 'Home',
     component: Home,
   },
@@ -15,6 +15,11 @@ const routes = [
     name: 'advert',
     component: () => import('../views/Advert.vue'),
   },
+  {
+    path:'/',
+    name:'file-upload',
+    component: () => import('../views/test/FileUpload.vue'),
+  }
 ]
 
 const router = new VueRouter({
