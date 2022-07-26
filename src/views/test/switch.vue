@@ -9,7 +9,7 @@
 </template>
 
 <script>
-import { props, mixin } from '../basis'
+import { props, mixin } from '@/components/control/basis'
 export default {
   name: 'SwitchComponent',
   mixins: [mixin],
@@ -22,7 +22,7 @@ export default {
       activeValue: true,
       // 关闭
       inactiveValue: false,
-      // 定义数据类型
+      // 定义类型
       initDefaultValueType: ['boolean', 'string', 'number'],
     }
   },
@@ -33,17 +33,19 @@ export default {
   },
   watch: {
     'config.activeValue': {
-      handler(val) {
-        const type = this.initDefaultValueType.includes(typeof val)
-        type && (this.activeValue = val)
+      handler(newValue) {
+        const bool = this.initDefaultValueType.includes(typeof newValue)
+        // const bool = ['boolean', 'string', 'number'].includes(typeof newValue)
+        bool && (this.activeValue = newValue)
       },
       immediate: true,
       deep: true,
     },
     'config.inactiveValue': {
-      handler(val) {
-        const type = this.initDefaultValueType.includes(typeof val)
-        type && (this.inactiveValue = val)
+      handler(newValue) {
+        const bool = this.initDefaultValueType.includes(typeof newValue)
+        // const bool = ['boolean', 'string', 'number'].includes(typeof newValue)
+        bool && (this.inactiveValue = newValue)
       },
       immediate: true,
       deep: true,
@@ -51,9 +53,9 @@ export default {
   },
   methods: {
     handleSwitch() {
-      const beforeChange = this.config.beforeChange
       const value =
         this.value === this.activeValue ? this.inactiveValue : this.activeValue
+      const beforeChange = this.config.beforeChange
       if (
         beforeChange &&
         Object.prototype.toString.call(beforeChange) === '[object Function]'
@@ -69,6 +71,11 @@ export default {
       }
       this.$emit('update:value', value)
     },
+  },
+  mounted() {
+    // setTimeout(() => {
+    //   this.active = true
+    // }, 2000)
   },
 }
 </script>

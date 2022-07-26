@@ -1,14 +1,24 @@
 import Vue from 'vue'
 import VueRouter from 'vue-router'
-import Home from '../views/Form.vue'
+import Home from '../views/home/Home.vue'
 
 Vue.use(VueRouter)
 
 const routes = [
   {
-    path: '/home',
+    path: '/',
     name: 'Home',
     component: Home,
+  },
+  {
+    path: '/form',
+    name: 'form',
+    component: () => import('../views/Form.vue'),
+  },
+  {
+    path: '/formview',
+    name: 'formview',
+    component: () => import('../views/FormView.vue'),
   },
   {
     path: '/advert',
@@ -16,14 +26,14 @@ const routes = [
     component: () => import('../views/Advert.vue'),
   },
   {
-    path:'/',
-    name:'file-upload',
-    component: () => import('../views/test/FileUpload.vue'),
-  }
+    path: '/upload',
+    name: 'upload',
+    component: () => import('../views/Upload.vue'),
+  },
 ]
 
 const router = new VueRouter({
-  mode: 'history',
+  mode: 'hash',
   routes,
 })
 

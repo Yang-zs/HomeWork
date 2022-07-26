@@ -7,7 +7,7 @@ module.exports = {
     hot: true, // 开启热加载
     proxy: {
       [process.env.VUE_APP_API]: {
-        target: process.env.VUE_API_DEV_TARGET, // API服务器的地址
+        target: 'http://upload.9yuecloud.com:8887', // API服务器的地址
         changeOrigin: true,
         pathRewrite: {
           [`^${process.env.VUE_APP_API}`]: '',
