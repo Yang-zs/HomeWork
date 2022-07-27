@@ -1,7 +1,8 @@
 <template>
-  <el-form ref="form" :model="field" label-width="80px">
+  <el-form ref="form" :inline="inline" :model="field" label-width="80px">
     <template v-for="item in formItem">
       <el-form-item
+        :size="item.size"
         :rules="item.rules"
         :key="item.label"
         :label="item.label"
@@ -43,6 +44,7 @@ export default {
     ...modules,
   },
   props: {
+    inline: Boolean,
     item: {
       type: Array,
       default: () => [],
@@ -79,18 +81,21 @@ export default {
     handleSubmit(item) {
       this.$refs.form.validate((valid) => {
         if (valid) {
+          this.$set(item, 'loading', true)
+          console.log(typeof this.beforeSubmit)
           if (typeof this.beforeSubmit === 'function') {
-            this.$set(item, 'loading', true)
+            console.log('123')
             this.beforeSubmit()
               .then((response) => {
-                console.log('成功')
                 this.$set(item, 'loading', false)
+                console.log('成功')
               })
-              .catch(() => {
+              .catch((eror) => {
                 console.log('失败')
                 this.$set(item, 'loading', false)
               })
           }
+
           console.log('表单提交')
         }
       })
@@ -106,4 +111,8 @@ export default {
 }
 </script>
 
-<style scoped></style>
+<style lang="scss" scoped>
+::v-deep .el-form-item__content {
+  line-height: 0;
+}
+</style>

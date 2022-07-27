@@ -1,3 +1,8 @@
+/**
+ * @author YangLing
+ * @date 2022/7/19 12:55
+ */
+// 导入axios
 import axios from 'axios'
 
 // 多个公共接口地址 多个代理 解决
@@ -5,7 +10,7 @@ import axios from 'axios'
 
 // 创建axios实例对象
 const service = axios.create({
-  // baseURL: process.env.VUE_APP_API,
+  baseURL: process.env.VUE_APP_API,
   timeout: 5000,
 })
 
@@ -32,16 +37,16 @@ service.interceptors.response.use(
 
 // 统一了传参处理
 const request = (options) => {
-  // if (options.method.toLowerCase() === 'get') {
-  //   options.params = options.data || {}
-  // }
+  if (options.method.toLowerCase() === 'get') {
+    options.params = options.data || {}
+  }
   // console.log(options)
 
   // 解决请求多个代理名称问题
-  console.log(options.basePath)
-  if (options.basePath) {
-    service.defaults.baseURL = options.basePath
-  }
+  // console.log(options.basePath)
+  // if (options.basePath) {
+  //   service.defaults.baseURL = options.basePath
+  // }
   return service(options)
 }
 
